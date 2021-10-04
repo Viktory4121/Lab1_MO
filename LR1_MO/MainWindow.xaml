@@ -1,0 +1,41 @@
+﻿<Window x:Class="LR1_MO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LR1_MO"
+        mc:Ignorable="d"
+        Title="Решение СЛАУ" Height="351.333" Width="627.334" UseLayoutRounding="False" Background="#FFC3D1E4" Foreground="Black">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="272" Margin="10,43,0,0" VerticalAlignment="Top" Width="601">
+            <TabItem Header="Дано" Height="22" Margin="-2,-2,-2.333,0" VerticalAlignment="Top">
+                <Grid Background="#FFCFDDEF" AutomationProperties.Name="tabControl1">
+                    <Label Content="А =" HorizontalAlignment="Left" Height="35" Margin="24,23,0,0" VerticalAlignment="Top" Width="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Label Content="B =" HorizontalAlignment="Left" Height="35" Margin="361,23,0,0" VerticalAlignment="Top" Width="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <TextBox HorizontalAlignment="Left" Height="223" Margin="70,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="258" AutomationProperties.Name="textBox3"/>
+                    <TextBox HorizontalAlignment="Left" Height="223" Margin="423,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81" AutomationProperties.Name="textBox4"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Решение" AutomationProperties.Name="tabControl2">
+                <Grid Background="#FFCFDDEF">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="290*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Left" Height="223" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="575" AutomationProperties.Name="textBlock1" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Ответ">
+                <Grid Background="#FFCFDDEF" AutomationProperties.Name="tabControl3">
+                    <TextBlock HorizontalAlignment="Left" Height="223" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="575" AutomationProperties.Name="textBlock2"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Label Content="Введите количество уравнений (m) и количество переменных (n):" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="403" FontWeight="Bold"/>
+        <Label Content="m:" HorizontalAlignment="Left" Height="28" Margin="418,11,0,0" VerticalAlignment="Top" Width="21"/>
+        <Label Content="n:" HorizontalAlignment="Left" Height="28" Margin="494,11,0,0" VerticalAlignment="Top" Width="21"/>
+        <Button Content="->" HorizontalAlignment="Left" Height="28" Margin="580,14,0,0" VerticalAlignment="Top" Width="28" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Height="33" Margin="444,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" AutomationProperties.Name="textBox1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox HorizontalAlignment="Left" Height="33" Margin="520,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="45" AutomationProperties.Name="textBox2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+    </Grid>
+</Window>
