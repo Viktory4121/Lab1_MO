@@ -64,17 +64,17 @@ namespace LR1_MO {
             //Вывод ответа
             textBox10.Text = "Решение уравнения AX=B: \r\nX: \r\n(  ";
             for (int i = 0; i < n; i++) {
-                textBox10.Text += Math.Round(X[i,0], 3).ToString() + "  ";
+                textBox10.Text += Math.Round(X[i,0], 6).ToString() + "  ";
             }
             textBox10.Text += ")";
 
             double[,] b_num = Mult_matrix(m, n, n, 1, A, X);
             double[,] b_discrepancy = Subtruct_matrix(m, 1, B, b_num);
-            double diz_rate = 0;
+            double diz_rate = 0.0;
             for (int i = 0; i < m; i++) {
                 diz_rate += Math.Pow(b_discrepancy[i,0], 2);
             }
-            textBox10.Text += "\r\n\r\nНорма невязки: " + Math.Round(Math.Sqrt(diz_rate), 3).ToString();
+            textBox10.Text += "\r\n\r\nНорма невязки: " + Math.Round(Math.Sqrt(diz_rate), 6).ToString();
         }
 
         static double[,] Faddeev_algorithm(int m, int n, double[,] A){
@@ -118,11 +118,11 @@ namespace LR1_MO {
             double num = 2.0;
 
             //Шаг 2 и следующие.
-            while (phi != 0.0){
+            while (phi != 0){
                 double[,] pop = Mult_matrix(n, n, n, n, A_T_A, Phi);
                 double[,] dod = Subtruct_matrix(n, n, Scalar_mult(n, n, phi, I), pop);
                 double buf = (1.0 / num) * Add_main_diag(dod, n);
-                if (buf == 0.0){
+                if (buf == 0) {
                     //Шаг l.
                     phi_ = phi;
                     Phi_ = Phi;
@@ -131,7 +131,7 @@ namespace LR1_MO {
                 Phi = dod;
                 phi = (1.0 / num) * Add_main_diag(Mult_matrix(n, n, n, n, A_T_A, Phi), n);
 
-                if (buf != 0.0) {
+                if (buf != 0) {
                     ww.WriteLine("\nШаг " + num.ToString() + ".");
                     ww.WriteLine("phi = " + phi.ToString());
                     ww.WriteLine("F: ");
@@ -151,7 +151,7 @@ namespace LR1_MO {
             ww.WriteLine("\nПсевдообратная матрица:");
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
-                    ww.Write(Math.Round(A_plus[i, j], 3).ToString() + "\t");
+                    ww.Write(Math.Round(A_plus[i, j], 6).ToString() + "\t");
                 }
                 ww.WriteLine();
             }
@@ -207,7 +207,7 @@ namespace LR1_MO {
             double[,] C = new double[m, n];
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    C[i, j] = A[i, j] - B[i, j];
+                    C[i, j] = (A[i, j] - B[i, j]);
                 }
             }
             return C;
