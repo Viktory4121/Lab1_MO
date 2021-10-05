@@ -14,8 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LR1_MO
-{
+namespace LR1_MO {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
@@ -25,6 +24,7 @@ namespace LR1_MO
         }
         public void Button_Click(object sender, RoutedEventArgs e) {
             //Инициализация СЛАУ
+            string z = textBox1.Text;
             int m = int.Parse(textBox1.Text);
             int n = int.Parse(textBox2.Text);
             double[,] A = new double[m, n];               //Матрица А
@@ -64,7 +64,7 @@ namespace LR1_MO
             //Вывод ответа
             textBox10.Text = "Решение уравнения AX=B: \r\nX: \r\n(  ";
             for (int i = 0; i < n; i++) {
-                textBox10.Text += X[i,0].ToString() + "  ";
+                textBox10.Text += Math.Round(X[i,0], 3).ToString() + "  ";
             }
             textBox10.Text += ")";
 
@@ -74,13 +74,13 @@ namespace LR1_MO
             for (int i = 0; i < m; i++) {
                 diz_rate += Math.Pow(b_discrepancy[i,0], 2);
             }
-            textBox10.Text += "\r\n\r\nНорма невязки: " + Math.Sqrt(diz_rate).ToString();
+            textBox10.Text += "\r\n\r\nНорма невязки: " + Math.Round(Math.Sqrt(diz_rate), 3).ToString();
         }
 
         static double[,] Faddeev_algorithm(int m, int n, double[,] A){
             //Открытие файла на запись
             FileStream file = new FileStream(
-                "D:\\документы\\Зюзька младшая\\LR1_MO\\Промежуточные вычисления.txt",
+                "C:\\Users\\Медведев Владислав\\Desktop\\LR1_MO\\Промежуточные вычисления.txt",
                  FileMode.Create);
             StreamWriter ww = new StreamWriter(file);
 
@@ -150,8 +150,8 @@ namespace LR1_MO
 
             ww.WriteLine("\nПсевдообратная матрица:");
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    ww.Write(A_plus[i, j].ToString() + "\t");
+                for (int j = 0; j < m; j++) {
+                    ww.Write(Math.Round(A_plus[i, j], 3).ToString() + "\t");
                 }
                 ww.WriteLine();
             }
