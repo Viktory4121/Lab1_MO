@@ -99,13 +99,13 @@ namespace LR1_MO {
             double[,] A_T_A = Mult_matrix(n, m, m, n, A_T, A);
 
             //Шаг 1.
-            ww.WriteLine("Промежуточные расчёты решения СЛАУ:");
+            ww.WriteLine("Промежуточные расчёты нахождения псевдообратной матрицы:");
             ww.WriteLine("Шаг 1.");
 
             double[,] Phi = I,
                       Phi_ = I;
             double phi = Add_main_diag(A_T_A, n),
-                   phi_ = phi;
+                   phi_ = Add_main_diag(A_T_A, n);
 
             ww.WriteLine("phi = " + phi.ToString());
             ww.WriteLine("F:");
@@ -119,16 +119,16 @@ namespace LR1_MO {
 
             //Шаг 2 и следующие.
             while (phi != 0){
-                double[,] pop = Mult_matrix(n, n, n, n, A_T_A, Phi);
-                double[,] dod = Subtruct_matrix(n, n, Scalar_mult(n, n, phi, I), pop);
-                double buf = (1.0 / num) * Add_main_diag(dod, n);
+                //double[,] pop = Mult_matrix(n, n, n, n, A_T_A, Phi);
+                //double[,] dod = Subtruct_matrix(n, n, Scalar_mult(n, n, phi, I), Mult_matrix(n, n, n, n, A_T_A, Phi));
+                double buf = (1.0 / num) * Add_main_diag(Mult_matrix(n, n, n, n, A_T_A, Subtruct_matrix(n, n, Scalar_mult(n, n, phi, I), Mult_matrix(n, n, n, n, A_T_A, Phi))), n);
                 if (buf == 0) {
                     //Шаг l.
                     phi_ = phi;
                     Phi_ = Phi;
                 }
 
-                Phi = dod;
+                Phi = Subtruct_matrix(n, n, Scalar_mult(n, n, phi, I), Mult_matrix(n, n, n, n, A_T_A, Phi));
                 phi = (1.0 / num) * Add_main_diag(Mult_matrix(n, n, n, n, A_T_A, Phi), n);
 
                 if (buf != 0) {
@@ -207,7 +207,7 @@ namespace LR1_MO {
             double[,] C = new double[m, n];
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    C[i, j] = (A[i, j] - B[i, j]);
+                    C[i, j] = A[i, j] - B[i, j];
                 }
             }
             return C;
